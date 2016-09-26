@@ -10,16 +10,7 @@ import pefile
 # For handling arguments
 import argparse
 
-# A structure for kernel32.dll
-# we need information about imageBase, size of image
-# and the entry point where the dll is loaded 
-'''
-kernel32_struct = {
-	'imageBase': 0x0,
-	'sizeOfImage': 0x0,
-	'entryPoint': 0x0,
-}
-'''
+# A class for DLL
 
 class Dll:
 
@@ -87,7 +78,6 @@ def dll_loader(dllPath, DllExports, Dll ):
 	# Specify dll path
 	dllName = dllPath.split('/')[1]
 
-	print(dllName)
 	# parse dll
 	dll = pefile.PE(dllPath)
 
@@ -125,7 +115,6 @@ def main():
 	# Let's parse arguments, the arguments are accessed through args variable
 	args = parser.parse_args()
 
-	print(args.dll_path)
 	# Create an instance of exports for Kernel32.dll
 	exports = Exports()
 
@@ -137,14 +126,11 @@ def main():
 
 	# For displaying DLL's information
 
-	# DLL's Entrypoint
-	print(dll.getEntryPoint()) 
-
 	# get the export address
 	exportAddr = exports.getAddress(args.export)
 
 	# Display the result
-	print("Export %s is located at 0x%x in %s" % (args.export, exportAddr , args.dll_path))
+	print(">>> The Export %s is located at 0x%x in %s" % (args.export, exportAddr , args.dll_path))
 
 if __name__ == "__main__":
 	main()
