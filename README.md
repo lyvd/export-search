@@ -21,4 +21,4 @@ We want to find the address of NtOpenKey in ntdll.dll:
 C:\Users\Lab\Documents\GitHub\export-search>python main.py -d dll/ntdll.dll -e NtOpenKey
 
 Result:
->>>The Export NtOpenKey is located at 0x77f05870 in dll/ntdll.dll
+The Export NtOpenKey is located at 0x77f05870 in dll/ntdll.dll
